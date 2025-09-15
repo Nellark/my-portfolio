@@ -1,4 +1,7 @@
+
 import React, { useEffect, useRef } from 'react';
+import PostmanIcon from '../assets/postman.svg';  
+
 
 const About: React.FC = () => {
   const skillsRef = useRef<HTMLDivElement>(null);
@@ -19,7 +22,11 @@ const About: React.FC = () => {
     { name: 'Java', icon: 'https://img.icons8.com/color/96/java-coffee-cup-logo.png' },
     { name: 'Spring Boot', icon: 'https://img.icons8.com/color/96/spring-logo.png' },
     { name: 'React', icon: 'https://img.icons8.com/color/96/react-native.png' },
-    { name: 'Postman', icon: 'https://img.icons8.com/color/96/postman-api.png' },
+    {
+      name: 'Postman',
+      icon: PostmanIcon,  // using the local SVG
+      description: "Postman can be used to write functional tests, integration tests, regression tests, and more. Postman's Node.js-based runtime contains support for common patterns and libraries that you can use to build tests quickly."
+    },
   ];
 
   useEffect(() => {
@@ -57,20 +64,20 @@ const About: React.FC = () => {
               </h2>
               <div className="w-20 h-1 bg-orange-600 mb-6"></div>
             </div>
-            
+
             <div className="space-y-6">
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                 I'm a passionate Full-Stack Developer with expertise in modern web technologies. 
                 I specialize in creating robust, scalable applications using frameworks like Angular, 
-                React, Spring Boot, and Java, alongside tools like Node.js, and working with various databases including MySQL and PostgreSQL.
+                React, Spring Boot, and Java, alongside tools like Node.js, Postman for API testing, and databases including MySQL and PostgreSQL.
               </p>
-              
+
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                 My journey in software development is driven by a love for clean code, 
                 exceptional user experiences, and solving complex problems through technology. 
                 I'm constantly learning and adapting to new technologies to stay at the forefront of web development.
               </p>
-              
+
               <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg border-l-4 border-orange-600 dark:border-orange-400">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">What I Do</h3>
                 <ul className="space-y-2 text-gray-600 dark:text-gray-300">
@@ -79,6 +86,7 @@ const About: React.FC = () => {
                   <li>• Database Design & Management</li>
                   <li>• Responsive Web Design</li>
                   <li>• Code Optimization & Performance</li>
+                  <li>• API Testing & Automation</li>
                 </ul>
               </div>
             </div>
@@ -90,11 +98,12 @@ const About: React.FC = () => {
               {skills.map((skill, index) => (
                 <div
                   key={skill.name}
-                  className="skill-card opacity-0 group cursor-pointer"
+                  className="skill-card opacity-0 group cursor-pointer relative"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md hover:shadow-xl dark:shadow-gray-900/50 transition-all duration-300 transform hover:scale-105 border border-gray-100 dark:border-gray-700">
                     <div className="flex flex-col items-center space-y-2">
+                      {/* If skill.icon is imported SVG, it will work too */}
                       <img
                         src={skill.icon}
                         alt={skill.name}
@@ -105,10 +114,16 @@ const About: React.FC = () => {
                       </span>
                     </div>
                   </div>
+                  {skill.description && (
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-gray-800 dark:bg-gray-900 text-white text-sm p-4 rounded-lg shadow-lg w-64 z-10">
+                      {skill.description}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>

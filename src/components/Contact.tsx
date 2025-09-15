@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
   };
 
   const openEmailModal = () => {
-    setFormData({ name: '', contact: 'nelakulati@gmail.com', message: 'Hello!', method: 'email' });
+    setFormData({ name: '', contact: 'nelakulati@gmail.com', message: 'Good day', method: 'email' });
     setStatusMessage('');
     setIsModalOpen(true);
     setIsClosing(false);
