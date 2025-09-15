@@ -24,7 +24,7 @@ const About: React.FC = () => {
     { name: 'React', icon: 'https://img.icons8.com/color/96/react-native.png' },
     {
       name: 'Postman',
-      icon: PostmanIcon,  // using the local SVG
+      icon: PostmanIcon, 
       description: "Postman can be used to write functional tests, integration tests, regression tests, and more. Postman's Node.js-based runtime contains support for common patterns and libraries that you can use to build tests quickly."
     },
   ];
@@ -93,7 +93,7 @@ const About: React.FC = () => {
           </div>
 
           <div ref={skillsRef} className="space-y-8">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center">Technical Skills</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center">Technical Tools</h3>
             <div className="grid grid-cols-3 md:grid-cols-4 gap-6">
               {skills.map((skill, index) => (
                 <div
