@@ -4,45 +4,44 @@ import emailjs from '@emailjs/browser';
 import './contact.css'; 
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', contact: '', message: '', method: 'sms' });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false); 
   const [sending, setSending] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const sendSMS = (data: { name: string; phone: string; message: string }) => {
-    const smsBody = `From: ${data.name}\nPhone: ${data.phone}\nMessage: ${data.message}`;
+  const sendSMS = (data: { name: string; contact: string; message: string }) => {
+    const smsBody = `From: ${data.name}\nContact: ${data.contact}\nMessage: ${data.message}`;
     const encodedBody = encodeURIComponent(smsBody);
     const smsLink = `sms:+27786465551?body=${encodedBody}`;
     try {
       window.location.href = smsLink;
       setStatusMessage('Opening your SMS app...');
-      setFormData({ name: '', phone: '', message: '' });
+      setFormData({ name: '', contact: '', message: '', method: 'sms' });
     } catch (error) {
       console.error('SMS Error:', error);
       setStatusMessage('Failed to open SMS app. Please try again.');
     }
   };
 
-  const sendEmail = (data: { name: string; phone: string; message: string }) => {
+  const sendEmail = (data: { name: string; contact: string; message: string }) => {
     setSending(true);
     setStatusMessage('');
     emailjs.send(
       "service_a1onxoj",
       "template_7pnsbd9",
-      { name: data.name, email: data.phone, title: data.message },
+      { name: data.name, email: data.contact, title: data.message },
       "EcrUPjoT2ab82b_44"
     )
     .then(() => {
       setSending(false);
       setStatusMessage('Email sent successfully!');
-      setFormData({ name: '', phone: '', message: '' });
-      closeModal();
+      setFormData({ name: '', contact: '', message: '', method: 'sms' });
     })
     .catch((error) => {
       setSending(false);
@@ -51,18 +50,17 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSMSSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    sendSMS(formData);
-  };
-
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    sendEmail(formData);
+    if (formData.method === 'sms') {
+      sendSMS(formData);
+    } else {
+      sendEmail(formData);
+    }
   };
 
   const openEmailModal = () => {
-    setFormData({ name: '', phone: 'nelakulati@gmail.com', message: 'Good day' });
+    setFormData({ name: '', contact: 'nelakulati@gmail.com', message: 'Hello!', method: 'email' });
     setStatusMessage('');
     setIsModalOpen(true);
     setIsClosing(false);
@@ -74,6 +72,12 @@ const Contact: React.FC = () => {
       setIsModalOpen(false);
       setIsClosing(false);
     }, 300); 
+  };
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    sendEmail(formData);
+    closeModal();
   };
 
   const contactInfo = [
@@ -129,23 +133,29 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Contact Form (SMS) */}
+          {/* Contact Form (SMS or Email) */}
           <div className="bg-gray-800 dark:bg-gray-900 p-8 rounded-xl">
             <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
-            <form onSubmit={handleSMSSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name"
                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400" required />
-              <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Your Phone Number"
+              <input type="text" name="contact" value={formData.contact} onChange={handleInputChange} 
+                     placeholder={formData.method === 'sms' ? 'Your Phone Number' : 'Your Email'}
                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400" required />
+              <select name="method" value={formData.method} onChange={handleInputChange}
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white">
+                <option value="sms">Send via SMS</option>
+                <option value="email">Send via Email</option>
+              </select>
               <textarea name="message" value={formData.message} onChange={handleInputChange} rows={5} placeholder="Your Message"
                         className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 resize-none" required />
-              <button type="submit"
-                      className="w-full flex justify-center items-center space-x-2 bg-orange-600 hover:bg-orange-700 py-3 rounded-lg">
-                <span>Send Message</span>
+              <button type="submit" disabled={sending}
+                      className="w-full flex justify-center items-center space-x-2 bg-orange-600 hover:bg-orange-700 py-3 rounded-lg disabled:opacity-70 disabled:cursor-not-allowed">
+                <span>{sending ? 'Sending...' : 'Send Message'}</span>
                 <Send className="w-4 h-4" />
               </button>
               {statusMessage && (
-                <p className={`mt-2 text-center ${statusMessage.includes('Opening') ? 'text-green-400' : 'text-red-400'}`}>
+                <p className={`mt-2 text-center ${statusMessage.includes('successfully') || statusMessage.includes('Opening') ? 'text-green-400' : 'text-red-400'}`}>
                   {statusMessage}
                 </p>
               )}
@@ -165,7 +175,7 @@ const Contact: React.FC = () => {
             <form onSubmit={handleEmailSubmit} className="space-y-4">
               <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name"
                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white" />
-              <input type="email" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Your Email"
+              <input type="email" name="contact" value={formData.contact} onChange={handleInputChange} placeholder="Your Email"
                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white" />
               <textarea name="message" value={formData.message} onChange={handleInputChange} rows={4} placeholder="Your Message"
                         className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white resize-none" />
