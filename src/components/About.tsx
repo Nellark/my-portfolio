@@ -11,11 +11,15 @@ const About: React.FC = () => {
     { name: 'Angular', icon: 'https://img.icons8.com/color/96/angularjs.png' },
     { name: 'Node.js', icon: 'https://img.icons8.com/color/96/nodejs.png' },
     { name: 'MySQL', icon: 'https://img.icons8.com/color/96/mysql-logo.png' },
-    { name: 'PostgreSQL', icon: 'https://img.icons8.com/color/96/postgresql.png' },
+    { name: 'PostgreSQL', icon: 'https://img.icons8.com/color/96/postgreesql.png' },
     { name: 'Git', icon: 'https://img.icons8.com/color/96/git.png' },
     { name: 'GitHub', icon: 'https://img.icons8.com/color/96/github--v1.png' },
     { name: 'Tailwind CSS', icon: 'https://img.icons8.com/color/96/tailwind_css.png' },
     { name: 'REST APIs', icon: 'https://img.icons8.com/color/96/api-settings.png' },
+    { name: 'Java', icon: 'https://img.icons8.com/color/96/java-coffee-cup-logo.png' },
+    { name: 'Spring Boot', icon: 'https://img.icons8.com/color/96/spring-logo.png' },
+    { name: 'React', icon: 'https://img.icons8.com/color/96/react-native.png' },
+    { name: 'Postman', icon: 'https://img.icons8.com/color/96/postman-api.png' },
   ];
 
   useEffect(() => {
@@ -58,7 +62,7 @@ const About: React.FC = () => {
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                 I'm a passionate Full-Stack Developer with expertise in modern web technologies. 
                 I specialize in creating robust, scalable applications using frameworks like Angular, 
-                Node.js, and working with various databases including MySQL and PostgreSQL.
+                React, Spring Boot, and Java, alongside tools like Node.js, and working with various databases including MySQL and PostgreSQL.
               </p>
               
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
