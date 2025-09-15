@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Mail, Linkedin, Github, Send, X } from 'lucide-react';
+import { Mail, Linkedin, Github, Send, X, MessageCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import './contact.css'; // Make sure CSS file is imported
+import './contact.css'; 
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isClosing, setIsClosing] = useState(false); // New state for closing animation
+  const [isClosing, setIsClosing] = useState(false); 
   const [sending, setSending] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
 
@@ -15,34 +15,54 @@ const Contact: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const sendEmail = (data: { name: string; email: string; message: string }) => {
+  const sendSMS = (data: { name: string; phone: string; message: string }) => {
+    const smsBody = `From: ${data.name}\nPhone: ${data.phone}\nMessage: ${data.message}`;
+    const encodedBody = encodeURIComponent(smsBody);
+    const smsLink = `sms:+27786465551?body=${encodedBody}`;
+    try {
+      window.location.href = smsLink;
+      setStatusMessage('Opening your SMS app...');
+      setFormData({ name: '', phone: '', message: '' });
+    } catch (error) {
+      console.error('SMS Error:', error);
+      setStatusMessage('Failed to open SMS app. Please try again.');
+    }
+  };
+
+  const sendEmail = (data: { name: string; phone: string; message: string }) => {
     setSending(true);
     setStatusMessage('');
     emailjs.send(
       "service_a1onxoj",
       "template_7pnsbd9",
-      { name: data.name, email: data.email, title: data.message },
+      { name: data.name, email: data.phone, title: data.message },
       "EcrUPjoT2ab82b_44"
     )
     .then(() => {
       setSending(false);
-      setStatusMessage('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
+      setStatusMessage('Email sent successfully!');
+      setFormData({ name: '', phone: '', message: '' });
+      closeModal();
     })
     .catch((error) => {
       setSending(false);
       console.error('EmailJS Error:', error);
-      setStatusMessage('Failed to send message. Please try again later.');
+      setStatusMessage('Failed to send email. Please try again later.');
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSMSSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    sendSMS(formData);
+  };
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     sendEmail(formData);
   };
 
   const openEmailModal = () => {
-    setFormData({ name: '', email: 'nelakulati@gmail.com', message: 'Hello!' });
+    setFormData({ name: '', phone: 'nelakulati@gmail.com', message: 'Good day' });
     setStatusMessage('');
     setIsModalOpen(true);
     setIsClosing(false);
@@ -53,13 +73,14 @@ const Contact: React.FC = () => {
     setTimeout(() => {
       setIsModalOpen(false);
       setIsClosing(false);
-    }, 300); // Match animation duration
+    }, 300); 
   };
 
   const contactInfo = [
+    { icon: <MessageCircle className="w-6 h-6" />, label: 'WhatsApp', value: '+27786465551', link: 'https://wa.me/0786465551' },
     { icon: <Mail className="w-6 h-6" />, label: 'Email', value: 'nelakulati@gmail.com', action: openEmailModal },
     { icon: <Linkedin className="w-6 h-6" />, label: 'LinkedIn', value: 'linkedin.com/in/yonela-kulati-665717133/', link: 'https://www.linkedin.com/in/yonela-kulati-665717133/' },
-    { icon: <Github className="w-6 h-6" />, label: 'GitHub', value: 'github.com/Nellark', link: 'https://github.com/Nellark' }
+    { icon: <Github className="w-6 h-6" />, label: 'GitHub', value: 'github.com/Nellark', link: 'https://github.com/Nellark' },
   ];
 
   return (
@@ -87,7 +108,7 @@ const Contact: React.FC = () => {
               {contactInfo.map((contact) =>
                 contact.link ? (
                   <a key={contact.label} href={contact.link} target="_blank" rel="noopener noreferrer"
-                     className="flex items-center space-x-4 p-4 bg-gray-800 dark:bg-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors duration-300 group">
+                     className="flex space-x-4 p-4 bg-gray-800 dark:bg-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors duration-300 group">
                     <div className="text-orange-600 dark:text-orange-400 group-hover:text-orange-400 dark:group-hover:text-orange-300 transition-colors">{contact.icon}</div>
                     <div>
                       <h4 className="font-semibold text-white">{contact.label}</h4>
@@ -96,7 +117,7 @@ const Contact: React.FC = () => {
                   </a>
                 ) : (
                   <button key={contact.label} onClick={contact.action}
-                     className="flex items-center space-x-4 p-4 w-full bg-gray-800 dark:bg-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors duration-300 group">
+                     className="flex space-x-4 p-4 w-full bg-gray-800 dark:bg-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors duration-300 group">
                     <div className="text-orange-600 dark:text-orange-400 group-hover:text-orange-400 dark:group-hover:text-orange-300 transition-colors">{contact.icon}</div>
                     <div>
                       <h4 className="font-semibold text-white">{contact.label}</h4>
@@ -108,23 +129,23 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Form (SMS) */}
           <div className="bg-gray-800 dark:bg-gray-900 p-8 rounded-xl">
             <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSMSSubmit} className="space-y-6">
               <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name"
                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400" required />
-              <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Your Email"
+              <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Your Phone Number"
                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400" required />
               <textarea name="message" value={formData.message} onChange={handleInputChange} rows={5} placeholder="Your Message"
                         className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 resize-none" required />
-              <button type="submit" disabled={sending}
-                      className="w-full flex justify-center items-center space-x-2 bg-orange-600 hover:bg-orange-700 py-3 rounded-lg disabled:opacity-70 disabled:cursor-not-allowed">
-                <span>{sending ? 'Sending...' : 'Send Message'}</span>
+              <button type="submit"
+                      className="w-full flex justify-center items-center space-x-2 bg-orange-600 hover:bg-orange-700 py-3 rounded-lg">
+                <span>Send Message</span>
                 <Send className="w-4 h-4" />
               </button>
               {statusMessage && (
-                <p className={`mt-2 text-center ${statusMessage.includes('successfully') ? 'text-green-400' : 'text-red-400'}`}>
+                <p className={`mt-2 text-center ${statusMessage.includes('Opening') ? 'text-green-400' : 'text-red-400'}`}>
                   {statusMessage}
                 </p>
               )}
@@ -133,7 +154,7 @@ const Contact: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal (Email) */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 transition-opacity duration-300">
           <div className={`bg-gray-900 p-6 rounded-xl w-full max-w-md transform ${isClosing ? 'animate-slideDown opacity-0' : 'animate-slideUp opacity-100'}`}>
@@ -141,10 +162,10 @@ const Contact: React.FC = () => {
               <X className="w-6 h-6" />
             </button>
             <h3 className="text-2xl font-bold mb-4">Send Email</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleEmailSubmit} className="space-y-4">
               <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name"
                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white" />
-              <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Your Email"
+              <input type="email" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Your Email"
                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white" />
               <textarea name="message" value={formData.message} onChange={handleInputChange} rows={4} placeholder="Your Message"
                         className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white resize-none" />
