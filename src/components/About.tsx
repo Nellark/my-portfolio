@@ -54,15 +54,15 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800  transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-20 bg-white dark:bg-gray-800  transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-2">
                 About Me
               </h2>
-              <div className="w-20 h-1 bg-orange-600 mb-6"></div>
+              <div className="w-20 h-1 bg-orange-600 mb-4"></div>
             </div>
 
             <div className="space-y-6">

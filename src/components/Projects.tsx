@@ -42,6 +42,14 @@ const Projects: React.FC = () => {
       technologies: ['Angular', 'Node.js', 'MySQL', 'Express.js'],
       githubUrl: 'https://github.com/Nellark/School-records',
       liveUrl: '#'
+    },
+    {
+      title: 'Weather App',
+      description: 'A weather forecasting application that displays current conditions, hourly updates, and 7-day forecasts.',
+      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=600',
+      technologies: ['Angular', 'TypeScript', 'OpenWeather API'],
+      githubUrl: 'https://github.com/Nellark/weather-app',
+      liveUrl: 'https://nelaweather.netlify.app'
     }
   ];
 
