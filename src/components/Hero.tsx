@@ -5,7 +5,7 @@ import HeroBg from "../assets/profile4.jpeg";
 
 const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
-  const fullText = 'Full-Stack Developer';
+  const fullText = 'Full-Stack Developer | Software Engineer';
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {

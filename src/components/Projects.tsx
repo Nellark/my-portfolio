@@ -16,7 +16,7 @@ const Projects: React.FC = () => {
       description: 'Complete salon management application with appointment scheduling, staff management, and customer records.',
       image: 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600',
       technologies: ['Angular', 'Node.js', 'PostgreSQL', 'REST API'],
-      githubUrl: 'https://github.com/The-DigitalAcademy/Yoni_Saloon',
+      githubUrl: 'https://nkele.netlify.app/',
       liveUrl: '#'
     },
     {
