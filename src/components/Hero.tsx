@@ -18,13 +18,6 @@ const Hero: React.FC = () => {
     }
   }, [currentIndex, fullText]);
 
-  // const scrollToAbout = () => {
-  //   const element = document.getElementById('about');
-  //   if (element) {
-  //     element.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // };
-
   return (
     <section
       id="home"
@@ -32,11 +25,12 @@ const Hero: React.FC = () => {
       style={{ backgroundImage: `url(${HeroBg})` }}
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50"></div>
+      <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          {/* Left Text Content */}
           <div className="text-center lg:text-left">
             <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 animate-fade-in">
               Hi, I'm <span className="text-orange-500">Yonela</span>
@@ -67,17 +61,22 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
+          {/* Right Profile Image */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              <div className="w-80 h-100 rounded-full overflow-hidden border-4 border-orange-200 shadow-2xl animate-float">
+            <div className="relative group">
+              {/* Profile Image with hover scale + rotate */}
+              <div className="w-[400px] h-[400px] rounded-full overflow-hidden shadow-2xl animate-float transition-transform duration-500 transform group-hover:scale-105 group-hover:rotate-2">
                 <img src={ProfileImage} alt="Yonela Kulati" className="w-full h-full object-cover" />
               </div>
-              <div className="absolute -top-2 -right-2 w-12 h-12 bg-orange-600 rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-orange-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+
+              {/* Top-right neon pulse circle */}
+              <div className="absolute -top-6 -right-6 w-20 h-20 bg-orange-500 rounded-full animate-pulse shadow-[0_0_20px_rgba(255,165,0,0.7)]"></div>
+
+              {/* Bottom-left neon pulse circle */}
+              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-orange-400 rounded-full animate-pulse shadow-[0_0_15px_rgba(255,140,0,0.7)]" style={{ animationDelay: '0.5s' }}></div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

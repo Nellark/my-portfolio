@@ -12,9 +12,9 @@ const Projects: React.FC = () => {
       liveUrl: '#'
     },
     {
-      title: 'Salon Management System',
+      title: 'Nail Tech Management System',
       description: 'Complete salon management application with appointment scheduling, staff management, and customer records.',
-      image: 'https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: 'https://cdn1.treatwell.net/images/view/v2.i13523089.w1080.h720.x7BA4471A/',
       technologies: ['Angular', 'Node.js', 'PostgreSQL', 'REST API'],
       githubUrl: 'https://github.com/The-DigitalAcademy/Yoni_Saloon',
       liveUrl: 'https://nkele.netlify.app/'
@@ -30,7 +30,7 @@ const Projects: React.FC = () => {
     {
       title: 'Task Management System',
       description: 'Collaborative task management platform with real-time updates, team collaboration, and project tracking.',
-      image: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: 'https://www.corexta.com/wp-content/uploads/2024/12/how-to-keep-track-of-tasks.jpeg',
       technologies: ['Angular', 'TypeScript', 'Material UI'],
       githubUrl: 'https://github.com/The-DigitalAcademy/done_deal',
       liveUrl: '#'
@@ -46,7 +46,7 @@ const Projects: React.FC = () => {
     {
       title: 'Weather App',
       description: 'A weather forecasting application that displays current conditions, hourly updates, and 7-day forecasts.',
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: 'https://i.pinimg.com/736x/d6/35/91/d63591612d87b872c7486005a4541ffe.jpg',
       technologies: ['Angular', 'TypeScript', 'OpenWeather API'],
       githubUrl: 'https://github.com/Nellark/weather-app',
       liveUrl: 'https://nelaweather.netlify.app'
