@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
+      className="relative min-h-screen flex items-center justify-center bg-cover bg-center pt-10 md:pt-0"
       style={{ backgroundImage: `url(${HeroBg})` }}
     >
       {/* Dark overlay */}
