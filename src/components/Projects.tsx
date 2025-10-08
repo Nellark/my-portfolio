@@ -8,8 +8,8 @@ const Projects: React.FC = () => {
       description: 'A full-stack e-commerce solution with shopping cart functionality, user authentication, and payment processing.',
       image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600',
       technologies: ['Angular', 'Node.js', 'MySQL', 'Stripe API'],
-      githubUrl: 'https://github.com/The-DigitalAcademy/cart_easy',
-      liveUrl: '#'
+      githubUrl: 'https://github.com/The-DigitalAcademy/e-commerce',
+      liveUrl: 'https://kulshopper.netlify.app/'
     },
     {
       title: 'Nail Tech Management System',
