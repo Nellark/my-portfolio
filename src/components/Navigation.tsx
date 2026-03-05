@@ -58,10 +58,10 @@ const Navigation: React.FC = () => {
               onClick={() => scrollToSection('home')}
               className="flex items-center space-x-2 group"
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110">
+              <div className="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center text-white font-bold group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110">
                 Y
               </div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">Yonela</h1>
+              <h1 className="text-xl font-bold text-gray-900 dark:text-white">Yonela</h1>
             </button>
           </div>
           
@@ -79,7 +79,7 @@ const Navigation: React.FC = () => {
               >
                 {item.label}
                 {activeSection === item.id && (
-                  <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></span>
+                  <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-orange-400 rounded-full"></span>
                 )}
               </button>
             ))}

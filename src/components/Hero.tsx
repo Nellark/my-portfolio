@@ -44,9 +44,9 @@ const Hero: React.FC = () => {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-4 animate-fade-in leading-tight">
-              Hi, I'm <span className="bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 bg-clip-text text-transparent">Yonela</span>
+              Hi, I'm <span className="text-orange-400">Yonela</span>
             </h1>
-            <div className="text-xl md:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-300 mb-6 h-10">
+            <div className="text-xl md:text-2xl font-semibold text-gray-200 mb-6 h-10">
               <span className="border-r-2 border-orange-400 pr-2">
                 {displayText}
               </span>
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-slide-up">
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:shadow-2xl hover:shadow-orange-500/50 shadow-lg"
+                className="group relative inline-flex items-center gap-2 bg-orange-400 hover:bg-orange-500 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:shadow-lg shadow-md"
               >
                 <span>Start a Project</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
           <div className="flex justify-center lg:justify-end">
             <div className="relative group w-full max-w-sm">
               {/* Animated border glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-orange-600 via-orange-400 to-red-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
+              <div className="absolute -inset-1 bg-orange-400 rounded-full blur-lg opacity-50 group-hover:opacity-75 transition-all duration-500 animate-pulse"></div>
               
               {/* Profile Image with hover scale + rotate */}
               <div className="relative w-full aspect-square rounded-full overflow-hidden shadow-2xl transition-transform duration-500 transform group-hover:scale-105">

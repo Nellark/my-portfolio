@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
           {/* About Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold">
+              <div className="w-8 h-8 rounded-lg bg-orange-400 flex items-center justify-center text-white font-bold">
                 Y
               </div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white">Yonela Kulati</h3>
@@ -109,7 +109,7 @@ const Footer: React.FC = () => {
       <div className="flex justify-center">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="mb-4 p-3 rounded-full bg-gradient-to-r from-orange-600 to-orange-500 text-white hover:shadow-lg hover:shadow-orange-600/50 transition-all duration-300 transform hover:scale-110"
+          className="mb-4 p-3 rounded-full bg-orange-400 text-white hover:bg-orange-500 hover:shadow-lg transition-all duration-300 transform hover:scale-110"
           title="Scroll to top"
         >
           <svg

@@ -109,27 +109,26 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="space-y-6">
-              {contactInfo.map((contact) =>
-                contact.link ? (
-                  <a key={contact.label} href={contact.link} target="_blank" rel="noopener noreferrer"
-                     className="flex space-x-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group">
-                    <div className="text-orange-600 dark:text-orange-400 group-hover:text-orange-500 dark:group-hover:text-orange-300 transition-colors">{contact.icon}</div>
+              {contactInfo.map((contact) => {
+                const ContactComponent = contact.link ? 'a' : 'button';
+                const componentProps = contact.link 
+                  ? { href: contact.link, target: '_blank', rel: 'noopener noreferrer' }
+                  : { onClick: contact.action };
+                
+                return (
+                  <ContactComponent
+                    key={contact.label}
+                    {...componentProps}
+                    className="flex space-x-4 p-4 w-full bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group text-left"
+                  >
+                    <div className="text-orange-400 group-hover:text-orange-400 transition-colors flex-shrink-0">{contact.icon}</div>
                     <div>
                       <h4 className="font-semibold text-gray-900 dark:text-white">{contact.label}</h4>
                       <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">{contact.value}</p>
                     </div>
-                  </a>
-                ) : (
-                  <button key={contact.label} onClick={contact.action}
-                     className="flex space-x-4 p-4 w-full bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group">
-                    <div className="text-orange-600 dark:text-orange-400 group-hover:text-orange-500 dark:group-hover:text-orange-300 transition-colors">{contact.icon}</div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white">{contact.label}</h4>
-                      <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">{contact.value}</p>
-                    </div>
-                  </button>
-                )
-              )}
+                  </ContactComponent>
+                );
+              })}
             </div>
           </div>
 
@@ -150,7 +149,7 @@ const Contact: React.FC = () => {
               <textarea name="message" value={formData.message} onChange={handleInputChange} rows={5} placeholder="Your Message"
                         className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none" required />
               <button type="submit" disabled={sending}
-                      className="w-full flex justify-center items-center space-x-2 bg-orange-600 hover:bg-orange-400 py-3 rounded-lg disabled:opacity-70 disabled:cursor-not-allowed">
+                      className="w-full flex justify-center items-center space-x-2 bg-orange-400 hover:bg-orange-500 text-white py-3 rounded-lg font-semibold disabled:opacity-70 disabled:cursor-not-allowed transition-colors">
                 <span>{sending ? 'Sending...' : 'Send Message'}</span>
                 <Send className="w-4 h-4" />
               </button>
@@ -180,7 +179,7 @@ const Contact: React.FC = () => {
               <textarea name="message" value={formData.message} onChange={handleInputChange} rows={4} placeholder="Your Message"
                         className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none" />
               <button type="submit" disabled={sending}
-                      className="w-full flex justify-center items-center space-x-2 bg-orange-600 hover:bg-orange-700 py-3 rounded-lg disabled:opacity-70 disabled:cursor-not-allowed">
+                      className="w-full flex justify-center items-center space-x-2 bg-orange-400 hover:bg-orange-500 text-white py-3 rounded-lg font-semibold disabled:opacity-70 disabled:cursor-not-allowed transition-colors">
                 <span>{sending ? 'Sending...' : 'Send'}</span>
                 <Send className="w-4 h-4" />
               </button>

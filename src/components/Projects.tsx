@@ -95,7 +95,7 @@ const Projects: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Featured Projects
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-8"></div>
+          <div className="w-20 h-1 bg-orange-400 mx-auto mb-8"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Showcase of my recent work demonstrating full-stack capabilities, modern technologies, and problem-solving expertise
           </p>
@@ -109,7 +109,7 @@ const Projects: React.FC = () => {
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
                 selectedCategory === cat.id
-                  ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg'
+                  ? 'bg-orange-400 text-white shadow-lg hover:bg-orange-500'
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
               }`}
             >
@@ -172,7 +172,7 @@ const Projects: React.FC = () => {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 dark:from-orange-600 dark:to-red-600 text-white dark:text-white text-xs font-semibold rounded-full"
+                      className="px-3 py-1 bg-orange-400 text-white text-xs font-semibold rounded-full"
                     >
                       {tech}
                     </span>
@@ -197,7 +197,7 @@ const Projects: React.FC = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:shadow-lg"
+                      className="flex items-center space-x-2 bg-orange-400 hover:bg-orange-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 transform hover:shadow-lg"
                       title="View Live Demo"
                     >
                       <ExternalLink size={16} />

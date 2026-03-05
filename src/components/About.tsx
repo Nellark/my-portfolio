@@ -72,7 +72,7 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <section id="about" className="py-24 bg-white dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden">
+    <section id="about" className="py-8 bg-white dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100 dark:bg-orange-900/10 rounded-full blur-3xl opacity-30 -z-10"></div>
       
@@ -105,7 +105,7 @@ const About: React.FC = () => {
               ].map((stat, index) => (
                 <div 
                   key={index}
-                  className="p-6 rounded-xl bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border border-orange-200 dark:border-orange-800 hover:shadow-lg transition-all duration-300"
+                  className="p-6 rounded-xl bg-orange-50 dark:bg-orange-900/10 border border-orange-200 dark:border-orange-800 hover:shadow-lg transition-all duration-300"
                 >
                   <div className="text-3xl mb-2">{stat.icon}</div>
                   <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{stat.number}</div>
