@@ -22,11 +22,11 @@ const About: React.FC = () => {
     { name: 'Java', icon: 'https://img.icons8.com/color/96/java-coffee-cup-logo.png' },
     { name: 'Spring Boot', icon: 'https://img.icons8.com/color/96/spring-logo.png' },
     { name: 'React', icon: 'https://img.icons8.com/color/96/react-native.png' },
-    {
-      name: 'Postman',
-      icon: PostmanIcon, 
-      description: "Postman can be used to write functional tests, integration tests, regression tests, and more. Postman's Node.js-based runtime contains support for common patterns and libraries that you can use to build tests quickly."
-    },
+    { name: 'Postman', icon: PostmanIcon},
+    { name: 'C#', icon: 'https://img.icons8.com/color/96/c-sharp-logo.png' },
+    { name: '.NET', icon: 'https://img.icons8.com/?size=96&id=1BC75jFEBED6&format=png' },
+    { name: 'AWS', icon: 'https://img.icons8.com/color/96/amazon-web-services.png' },
+    { name: 'Figma', icon: 'https://img.icons8.com/color/96/figma--v1.png' },
   ];
 
   useEffect(() => {
@@ -103,7 +103,7 @@ const About: React.FC = () => {
                 >
                   <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md hover:shadow-xl dark:shadow-gray-900/50 transition-all duration-300 transform hover:scale-105 border border-gray-100 dark:border-gray-700">
                     <div className="flex flex-col items-center space-y-2">
-                      {/* If skill.icon is imported SVG, it will work too */}
+                      
                       <img
                         src={skill.icon}
                         alt={skill.name}
@@ -114,11 +114,6 @@ const About: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  {skill.description && (
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-gray-800 dark:bg-gray-900 text-white text-sm p-4 rounded-lg shadow-lg w-64 z-10">
-                      {skill.description}
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
