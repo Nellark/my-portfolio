@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ProfileImage from "../assets/profile.jpeg";
-import MyCV from "../assets/CV_Yonela.pdf";
+import ProfileImage from "../assets/Profile5.jpeg";
+import MyCV from "../assets/Yonela's-CV.pdf";
 import HeroBg from "../assets/profile4.jpeg"; 
 
 const Hero: React.FC = () => {
