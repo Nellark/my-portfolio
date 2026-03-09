@@ -88,12 +88,12 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-900 dark:bg-gray-950 text-white transition-colors duration-300">
+    <section id="contact" className="py-20 bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Get In Touch</h2>
           <div className="w-20 h-1 bg-orange-600 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-300 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together.
           </p>
         </div>
@@ -103,54 +103,53 @@ const Contact: React.FC = () => {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
-              <p className="text-gray-300 dark:text-gray-400 text-lg mb-8">
+              <p className="text-gray-600 dark:text-gray-400 text-lg mb-8">
                 Reach out through any of the channels below or send me a message.
               </p>
             </div>
 
             <div className="space-y-6">
-              {contactInfo.map((contact) =>
-                contact.link ? (
-                  <a key={contact.label} href={contact.link} target="_blank" rel="noopener noreferrer"
-                     className="flex space-x-4 p-4 bg-gray-800 dark:bg-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors duration-300 group">
-                    <div className="text-orange-600 dark:text-orange-400 group-hover:text-orange-400 dark:group-hover:text-orange-300 transition-colors">{contact.icon}</div>
+              {contactInfo.map((contact) => {
+                const ContactComponent = contact.link ? 'a' : 'button';
+                const componentProps = contact.link 
+                  ? { href: contact.link, target: '_blank', rel: 'noopener noreferrer' }
+                  : { onClick: contact.action };
+                
+                return (
+                  <ContactComponent
+                    key={contact.label}
+                    {...componentProps}
+                    className="flex space-x-4 p-4 w-full bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group text-left"
+                  >
+                    <div className="text-orange-400 group-hover:text-orange-400 transition-colors flex-shrink-0">{contact.icon}</div>
                     <div>
-                      <h4 className="font-semibold text-white">{contact.label}</h4>
-                      <p className="text-gray-300 dark:text-gray-400 group-hover:text-white transition-colors">{contact.value}</p>
+                      <h4 className="font-semibold text-gray-900 dark:text-white">{contact.label}</h4>
+                      <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">{contact.value}</p>
                     </div>
-                  </a>
-                ) : (
-                  <button key={contact.label} onClick={contact.action}
-                     className="flex space-x-4 p-4 w-full bg-gray-800 dark:bg-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-800 transition-colors duration-300 group">
-                    <div className="text-orange-600 dark:text-orange-400 group-hover:text-orange-400 dark:group-hover:text-orange-300 transition-colors">{contact.icon}</div>
-                    <div>
-                      <h4 className="font-semibold text-white">{contact.label}</h4>
-                      <p className="text-gray-300 dark:text-gray-400 group-hover:text-white transition-colors">{contact.value}</p>
-                    </div>
-                  </button>
-                )
-              )}
+                  </ContactComponent>
+                );
+              })}
             </div>
           </div>
 
           {/* Contact Form (SMS or Email) */}
-          <div className="bg-gray-800 dark:bg-gray-900 p-8 rounded-xl">
+          <div className="bg-gray-100 dark:bg-gray-800 p-8 rounded-xl">
             <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name"
-                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400" required />
+                     className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" required />
               <input type="text" name="contact" value={formData.contact} onChange={handleInputChange} 
                      placeholder={formData.method === 'sms' ? 'Your Phone Number' : 'Your Email'}
-                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400" required />
+                     className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" required />
               <select name="method" value={formData.method} onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white">
+                      className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white">
                 <option value="sms">Send via SMS</option>
                 <option value="email">Send via Email</option>
               </select>
               <textarea name="message" value={formData.message} onChange={handleInputChange} rows={5} placeholder="Your Message"
-                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 resize-none" required />
+                        className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none" required />
               <button type="submit" disabled={sending}
-                      className="w-full flex justify-center items-center space-x-2 bg-orange-600 hover:bg-orange-700 py-3 rounded-lg disabled:opacity-70 disabled:cursor-not-allowed">
+                      className="w-full flex justify-center items-center space-x-2 bg-orange-400 hover:bg-orange-500 text-white py-3 rounded-lg font-semibold disabled:opacity-70 disabled:cursor-not-allowed transition-colors">
                 <span>{sending ? 'Sending...' : 'Send Message'}</span>
                 <Send className="w-4 h-4" />
               </button>
@@ -167,20 +166,20 @@ const Contact: React.FC = () => {
       {/* Modal (Email) */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 transition-opacity duration-300">
-          <div className={`bg-gray-900 p-6 rounded-xl w-full max-w-md transform ${isClosing ? 'animate-slideDown opacity-0' : 'animate-slideUp opacity-100'}`}>
-            <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 hover:text-white">
+          <div className={`bg-white dark:bg-gray-900 p-6 rounded-xl w-full max-w-md transform ${isClosing ? 'animate-slideDown opacity-0' : 'animate-slideUp opacity-100'}`}>
+            <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 dark:text-gray-400 hover:text-gray-600 dark:hover:text-white">
               <X className="w-6 h-6" />
             </button>
-            <h3 className="text-2xl font-bold mb-4">Send Email</h3>
+            <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Send Email</h3>
             <form onSubmit={handleEmailSubmit} className="space-y-4">
               <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name"
-                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white" />
+                     className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" />
               <input type="email" name="contact" value={formData.contact} onChange={handleInputChange} placeholder="Your Email"
-                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white" />
+                     className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" />
               <textarea name="message" value={formData.message} onChange={handleInputChange} rows={4} placeholder="Your Message"
-                        className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white resize-none" />
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none" />
               <button type="submit" disabled={sending}
-                      className="w-full flex justify-center items-center space-x-2 bg-orange-600 hover:bg-orange-700 py-3 rounded-lg disabled:opacity-70 disabled:cursor-not-allowed">
+                      className="w-full flex justify-center items-center space-x-2 bg-orange-400 hover:bg-orange-500 text-white py-3 rounded-lg font-semibold disabled:opacity-70 disabled:cursor-not-allowed transition-colors">
                 <span>{sending ? 'Sending...' : 'Send'}</span>
                 <Send className="w-4 h-4" />
               </button>
